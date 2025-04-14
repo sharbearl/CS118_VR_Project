@@ -11,6 +11,7 @@ public class playGame : MonoBehaviour
     {
         startImg.enabled = false;
         quitImg.enabled = false;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void Play()
