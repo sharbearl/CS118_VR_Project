@@ -12,7 +12,7 @@ public class basicInputs : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             Debug.Log("Pressed");
             SceneManager.LoadScene("MainMenu");
