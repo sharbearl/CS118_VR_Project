@@ -362,6 +362,22 @@ public class FirstPersonController : MonoBehaviour
         {
             HeadBob();
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            lockCursor = !lockCursor;
+            playerCanMove = !playerCanMove;
+            cameraCanMove = !cameraCanMove;
+        }
+
+        if (lockCursor)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
 
     void FixedUpdate()
