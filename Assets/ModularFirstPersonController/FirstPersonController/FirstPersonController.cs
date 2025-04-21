@@ -16,6 +16,7 @@ using UnityEngine.UI;
 
 public class FirstPersonController : MonoBehaviour
 {
+    public Button resume;
     private Rigidbody rb;
 
     #region Camera Movement Variables
@@ -361,13 +362,6 @@ public class FirstPersonController : MonoBehaviour
         if(enableHeadBob)
         {
             HeadBob();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            lockCursor = !lockCursor;
-            playerCanMove = !playerCanMove;
-            cameraCanMove = !cameraCanMove;
         }
 
         if (lockCursor)
