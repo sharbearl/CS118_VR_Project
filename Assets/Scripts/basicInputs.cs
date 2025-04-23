@@ -7,6 +7,7 @@ public class basicInputs : MonoBehaviour
     public GameObject panel;
     bool paused;
     public GameObject controller;
+    public ParticleSystem smoke;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -48,9 +49,22 @@ public class basicInputs : MonoBehaviour
     {
         paused = !paused;
         panel.SetActive(paused);
+        ToggleParticles();
 
         controller.GetComponent<FirstPersonController>().lockCursor = !controller.GetComponent<FirstPersonController>().lockCursor;
         controller.GetComponent<FirstPersonController>().playerCanMove = !controller.GetComponent<FirstPersonController>().playerCanMove;
         controller.GetComponent<FirstPersonController>().cameraCanMove = !controller.GetComponent<FirstPersonController>().cameraCanMove;
+    }
+
+    private void ToggleParticles()
+    {
+        if (paused)
+        {
+            smoke.Pause();
+        }
+        else
+        {
+            smoke.Play();
+        }
     }
 }
