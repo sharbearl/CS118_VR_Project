@@ -1,6 +1,12 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static Unity.VisualScripting.Member;
+
+interface Interactable
+{
+    public void Interact();
+}
 
 public class basicInputs : MonoBehaviour
 {
@@ -8,12 +14,17 @@ public class basicInputs : MonoBehaviour
     bool paused;
     public GameObject controller;
     public ParticleSystem smoke;
+    public Transform Source;
+    public float Range;
+
+    private LayerMask mask;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         paused = false;
         panel.SetActive(paused);
+        mask = LayerMask.GetMask("Interactable");
     }
 
     // Update is called once per frame
@@ -27,6 +38,19 @@ public class basicInputs : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape)) {
             TogglePause();
             Debug.Log("Escape pressed");
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Ray r = new Ray(Source.position, Source.forward);
+            Debug.Log("E key pressed");
+            if (Physics.Raycast(r, out RaycastHit hitInfo, Range, mask))
+            {
+                if (hitInfo.collider.gameObject.TryGetComponent(out Interactable obj))
+                {
+                    obj.Interact();
+                }
+            }
         }
     }
 
