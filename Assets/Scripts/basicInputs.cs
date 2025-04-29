@@ -1,7 +1,9 @@
 using UnityEngine;
+using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static Unity.VisualScripting.Member;
+
 
 interface Interactable
 {
@@ -25,6 +27,8 @@ public class basicInputs : MonoBehaviour
         paused = false;
         panel.SetActive(paused);
         mask = LayerMask.GetMask("Interactable");
+
+        Time.timeScale = 1;
     }
 
     // Update is called once per frame
@@ -73,22 +77,22 @@ public class basicInputs : MonoBehaviour
     {
         paused = !paused;
         panel.SetActive(paused);
-        ToggleParticles();
+        ToggleMovement();
+    }
+
+    private void ToggleMovement()
+    {
+        if (paused)
+        {
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
 
         controller.GetComponent<FirstPersonController>().lockCursor = !controller.GetComponent<FirstPersonController>().lockCursor;
         controller.GetComponent<FirstPersonController>().playerCanMove = !controller.GetComponent<FirstPersonController>().playerCanMove;
         controller.GetComponent<FirstPersonController>().cameraCanMove = !controller.GetComponent<FirstPersonController>().cameraCanMove;
-    }
-
-    private void ToggleParticles()
-    {
-        if (paused)
-        {
-            smoke.Pause();
-        }
-        else
-        {
-            smoke.Play();
-        }
     }
 }
