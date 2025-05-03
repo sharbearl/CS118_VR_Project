@@ -1,4 +1,5 @@
 using System.ComponentModel.Design.Serialization;
+using UnityEditor;
 using UnityEngine;
 
 public class CatMovement : MonoBehaviour
@@ -9,6 +10,7 @@ public class CatMovement : MonoBehaviour
     private Animator animator;
     private bool idle = true;
     private int sinceStart = 0;
+    private bool paused = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -42,6 +44,16 @@ public class CatMovement : MonoBehaviour
             else
                 transform.Translate(Vector3.forward / 2 * Time.deltaTime);
         }
-        sinceStart += 1;
+
+        if (!paused)
+        {
+            sinceStart += 1;
+        }
+    }
+
+    public void PauseMovement()
+    {
+        Debug.Log("Cat movement paused");
+        paused = !paused;
     }
 }

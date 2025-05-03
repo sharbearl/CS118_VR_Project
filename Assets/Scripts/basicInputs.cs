@@ -16,15 +16,20 @@ public class basicInputs : MonoBehaviour
     public GameObject interactText;
     bool paused;
     public GameObject controller;
-    public ParticleSystem smoke;
     public Transform Source;
     public float Range;
 
     private LayerMask mask;
+    private List<GameObject> cats = new List<GameObject>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        foreach (GameObject obj in GameObject.FindGameObjectsWithTag("MovingCat"))
+        {
+            cats.Add(obj);
+        }
+
         paused = false;
         pauseScreen.SetActive(paused);
         interactText.SetActive(false);
@@ -90,6 +95,11 @@ public class basicInputs : MonoBehaviour
         paused = !paused;
         pauseScreen.SetActive(paused);
         ToggleMovement();
+
+        foreach (GameObject obj in cats)
+        {
+            obj.GetComponent<CatMovement>().PauseMovement();
+        }
     }
 
     private void ToggleMovement()

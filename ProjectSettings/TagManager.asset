@@ -7,6 +7,7 @@ TagManager:
   - Fluid
   - cat room light
   - Cat
+  - MovingCat
   layers:
   - Default
   - TransparentFX
