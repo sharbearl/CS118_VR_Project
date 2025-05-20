@@ -6,6 +6,8 @@ public class CatMeowing : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public AudioSource catSound;
     private int timer = 0;
+    private bool paused = false;
+
     void Start()
     {
         timer = Random.Range(100, 500);
@@ -20,6 +22,23 @@ public class CatMeowing : MonoBehaviour
             timer = Random.Range(100, 1000);
         }
 
-        --timer;
+        if (!paused)
+        {
+            --timer;
+        }
+    }
+
+    public void PauseSounds()
+    {
+        Debug.Log("Cat sound paused");
+        paused = !paused;
+        if (paused)
+        {
+            catSound.Pause();
+        }
+        else
+        {
+            catSound.UnPause();
+        }
     }
 }

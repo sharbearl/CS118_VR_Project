@@ -8,6 +8,7 @@ TagManager:
   - cat room light
   - Cat
   - MovingCat
+  - MeowingCat
   layers:
   - Default
   - TransparentFX

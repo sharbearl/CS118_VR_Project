@@ -21,6 +21,7 @@ public class basicInputs : MonoBehaviour
 
     private LayerMask mask;
     private List<GameObject> cats = new List<GameObject>();
+    private List<GameObject> catMews = new List<GameObject>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -28,6 +29,10 @@ public class basicInputs : MonoBehaviour
         foreach (GameObject obj in GameObject.FindGameObjectsWithTag("MovingCat"))
         {
             cats.Add(obj);
+        }
+        foreach (GameObject obj in GameObject.FindGameObjectsWithTag("MeowingCat"))
+        {
+            catMews.Add(obj);
         }
 
         paused = false;
@@ -99,6 +104,10 @@ public class basicInputs : MonoBehaviour
         foreach (GameObject obj in cats)
         {
             obj.GetComponent<CatMovement>().PauseMovement();
+        }
+        foreach (GameObject obj in catMews)
+        {
+            obj.GetComponent<CatMeowing>().PauseSounds();
         }
     }
 
