@@ -94,7 +94,6 @@ public class FirstPersonController : MonoBehaviour
     #endregion
 
     #region Jump
-    public AudioClip jumpSound;
     private AudioSource audioSource;
     public bool enableJump = true;
     public KeyCode jumpKey = KeyCode.Space;
@@ -332,9 +331,9 @@ public class FirstPersonController : MonoBehaviour
         // Gets input and calls jump method
         if(enableJump && Input.GetKeyDown(jumpKey) && isGrounded)
         {
-            if (jumpSound != null && audioSource != null)
+            if (audioSource != null)
             {
-                audioSource.PlayOneShot(jumpSound);
+                audioSource.Play();
             }
             Jump();
         }
