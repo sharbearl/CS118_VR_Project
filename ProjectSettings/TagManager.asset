@@ -9,6 +9,7 @@ TagManager:
   - Cat
   - MovingCat
   - MeowingCat
+  - kettle
   layers:
   - Default
   - TransparentFX

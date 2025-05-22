@@ -22,6 +22,7 @@ public class basicInputs : MonoBehaviour
     private LayerMask mask;
     private List<GameObject> cats = new List<GameObject>();
     private List<GameObject> catMews = new List<GameObject>();
+    private GameObject kettle;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -34,6 +35,7 @@ public class basicInputs : MonoBehaviour
         {
             catMews.Add(obj);
         }
+        kettle = GameObject.FindWithTag("kettle");
 
         paused = false;
         pauseScreen.SetActive(paused);
@@ -103,12 +105,19 @@ public class basicInputs : MonoBehaviour
 
         foreach (GameObject obj in cats)
         {
-            obj.GetComponent<CatMovement>().PauseMovement();
+            if (obj != null)
+                obj.GetComponent<CatMovement>().PauseMovement();
         }
         foreach (GameObject obj in catMews)
         {
-            obj.GetComponent<CatMeowing>().PauseSounds();
+            if (obj != null)
+                obj.GetComponent<CatMeowing>().PauseSounds();
         }
+        
+        if (paused)
+            kettle.GetComponent<AudioSource>().Pause();
+        else
+            kettle.GetComponent<AudioSource>().UnPause();
     }
 
     private void ToggleMovement()
