@@ -15,5 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Assignment3.unity
     guid: 5429293cfe8177a4486176a93dc88727
   m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 6d2062d08ea666c47bbd8a5f13dca5a4, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 55678b5290f1c4d488265045d287f062, type: 2}
   m_UseUCBPForAssetBundles: 0

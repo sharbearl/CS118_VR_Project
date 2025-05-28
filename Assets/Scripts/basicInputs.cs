@@ -131,8 +131,8 @@ public class basicInputs : MonoBehaviour
             Time.timeScale = 1;
         }
 
-        controller.GetComponent<FirstPersonController>().lockCursor = !controller.GetComponent<FirstPersonController>().lockCursor;
-        controller.GetComponent<FirstPersonController>().playerCanMove = !controller.GetComponent<FirstPersonController>().playerCanMove;
-        controller.GetComponent<FirstPersonController>().cameraCanMove = !controller.GetComponent<FirstPersonController>().cameraCanMove;
+        //controller.GetComponent<FirstPersonController>().lockCursor = !controller.GetComponent<FirstPersonController>().lockCursor;
+        //controller.GetComponent<FirstPersonController>().playerCanMove = !controller.GetComponent<FirstPersonController>().playerCanMove;
+        //controller.GetComponent<FirstPersonController>().cameraCanMove = !controller.GetComponent<FirstPersonController>().cameraCanMove;
     }
 }
