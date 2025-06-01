@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static Unity.VisualScripting.Member;
+using UnityEngine.InputSystem;
 
 
 interface Interactable
@@ -18,6 +19,10 @@ public class basicInputs : MonoBehaviour
     public GameObject controller;
     public Transform Source;
     public float Range;
+    public GameObject movement;
+    public InputActionReference pauseButton;
+    public Transform head;
+    public float menuDistance = 2;
 
     private LayerMask mask;
     private List<GameObject> cats = new List<GameObject>();
@@ -42,6 +47,8 @@ public class basicInputs : MonoBehaviour
         interactText.SetActive(false);
         mask = LayerMask.GetMask("Interactable");
 
+        pauseButton.action.Enable();
+
         Time.timeScale = 1;
     }
 
@@ -53,32 +60,32 @@ public class basicInputs : MonoBehaviour
             GoToMenu();
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape)) {
+        if (pauseButton.action.IsPressed()) {
             TogglePause();
-            Debug.Log("Escape pressed");
+            Debug.Log("Pause pressed");
         }
 
-        Ray r = new Ray(Source.position, Source.forward);
-        if (Physics.Raycast(r, out RaycastHit hitInfo, Range, mask))
-        {
-            if (hitInfo.collider.gameObject.TryGetComponent(out Interactable obj))
-            {
-                interactText.SetActive(true);
-                if (Input.GetKeyDown(KeyCode.E)) 
-                { 
-                    Debug.Log("E key pressed");
-                    obj.Interact();
-                }
-            }
-            else
-            {
-                interactText.SetActive(false);
-            }
-        }
-        else
-        {
-            interactText.SetActive(false);
-        }
+        //Ray r = new Ray(Source.position, Source.forward);
+        //if (Physics.Raycast(r, out RaycastHit hitInfo, Range, mask))
+        //{
+        //    if (hitInfo.collider.gameObject.TryGetComponent(out Interactable obj))
+        //    {
+        //        interactText.SetActive(true);
+        //        if (Input.GetKeyDown(KeyCode.E)) 
+        //        { 
+        //            Debug.Log("E key pressed");
+        //            obj.Interact();
+        //        }
+        //    }
+        //    else
+        //    {
+        //        interactText.SetActive(false);
+        //    }
+        //}
+        //else
+        //{
+        //    interactText.SetActive(false);
+        //}
 
     }
 
@@ -100,7 +107,7 @@ public class basicInputs : MonoBehaviour
     private void TogglePause()
     {
         paused = !paused;
-        pauseScreen.SetActive(paused);
+        ShowMenu();
         ToggleMovement();
 
         foreach (GameObject obj in cats)
@@ -120,6 +127,15 @@ public class basicInputs : MonoBehaviour
             kettle.GetComponent<AudioSource>().UnPause();
     }
 
+    private void ShowMenu()
+    {
+        pauseScreen.SetActive(paused);
+
+        pauseScreen.transform.position = head.position + new Vector3(head.forward.x, 0, head.forward.z).normalized * menuDistance;
+        pauseScreen.transform.LookAt(new Vector3(head.position.x, pauseScreen.transform.position.y, head.position.z));
+        pauseScreen.transform.forward *= -1;
+    }
+
     private void ToggleMovement()
     {
         if (paused)
@@ -131,8 +147,6 @@ public class basicInputs : MonoBehaviour
             Time.timeScale = 1;
         }
 
-        //controller.GetComponent<FirstPersonController>().lockCursor = !controller.GetComponent<FirstPersonController>().lockCursor;
-        //controller.GetComponent<FirstPersonController>().playerCanMove = !controller.GetComponent<FirstPersonController>().playerCanMove;
-        //controller.GetComponent<FirstPersonController>().cameraCanMove = !controller.GetComponent<FirstPersonController>().cameraCanMove;
+        movement.SetActive(!paused);
     }
 }

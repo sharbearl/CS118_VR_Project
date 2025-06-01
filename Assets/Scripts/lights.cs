@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class lights : MonoBehaviour, Interactable
 {
-    private List<GameObject> light = new List<GameObject>();
+    private List<GameObject> light_list = new List<GameObject>();
     private bool lightsOn = true;
     public AudioSource lightSwitchOn;
     public AudioSource lightSwitchOff;
@@ -13,7 +13,7 @@ public class lights : MonoBehaviour, Interactable
     {
         foreach (GameObject obj in GameObject.FindGameObjectsWithTag("cat room light"))
         {
-            light.Add(obj);
+            light_list.Add(obj);
         }
     }
 
@@ -29,7 +29,7 @@ public class lights : MonoBehaviour, Interactable
         PlaySound();
         Debug.Log("turning lights " + (lightsOn ? "on" : "off"));
 
-        foreach (GameObject obj in light)
+        foreach (GameObject obj in light_list)
         {
             obj.SetActive(lightsOn);
         }
