@@ -65,28 +65,6 @@ public class basicInputs : MonoBehaviour
             Debug.Log("Pause pressed");
         }
 
-        //Ray r = new Ray(Source.position, Source.forward);
-        //if (Physics.Raycast(r, out RaycastHit hitInfo, Range, mask))
-        //{
-        //    if (hitInfo.collider.gameObject.TryGetComponent(out Interactable obj))
-        //    {
-        //        interactText.SetActive(true);
-        //        if (Input.GetKeyDown(KeyCode.E)) 
-        //        { 
-        //            Debug.Log("E key pressed");
-        //            obj.Interact();
-        //        }
-        //    }
-        //    else
-        //    {
-        //        interactText.SetActive(false);
-        //    }
-        //}
-        //else
-        //{
-        //    interactText.SetActive(false);
-        //}
-
     }
 
     public void GoToMenu()
