@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class lights : MonoBehaviour, Interactable
 {
@@ -7,6 +8,7 @@ public class lights : MonoBehaviour, Interactable
     private bool lightsOn = true;
     public AudioSource lightSwitchOn;
     public AudioSource lightSwitchOff;
+    public GameObject message;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,6 +23,11 @@ public class lights : MonoBehaviour, Interactable
     void Update()
     {
         
+    }
+
+    public void ToggleMessage()
+    {
+        message.SetActive(!message.activeInHierarchy);
     }
 
     public void Interact()
