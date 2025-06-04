@@ -1,14 +1,15 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ScoreCounter
+public class ScoreCounter : MonoBehaviour 
 {
-    private int scoreCount = 0;
-    public Text text;
+    private double scoreCount = 0;
+    public TextMeshProUGUI text;
 
     public void UpdateScore()
     {
-        scoreCount++;
+        scoreCount+=0.5;
         text.text = scoreCount.ToString();
     }
 }
