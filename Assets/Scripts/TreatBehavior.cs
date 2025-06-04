@@ -2,13 +2,12 @@ using UnityEngine;
 
 public class TreatBehavior : MonoBehaviour
 {
-    public GameObject heartBubblePrefab;
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Cat"))
+        if (collision.gameObject.CompareTag("Cat") || collision.gameObject.CompareTag("MeowingCat") || collision.gameObject.CompareTag("MovingCat") )
         {
-            Instantiate(heartBubblePrefab, collision.contacts[0].point, Quaternion.identity);
+            collision.gameObject.catCollision;
         }
 
         Destroy(gameObject); // Destroy the treat after hitting
