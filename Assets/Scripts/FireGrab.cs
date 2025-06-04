@@ -23,13 +23,24 @@ public class FireGrab : XRGrabInteractable
         base.OnSelectEntered(args);
         selected = true;
         interactor = args.interactorObject;
-        sparkles.Play();
     }
 
     protected override void OnSelectExited(SelectExitEventArgs args)
     {
         base.OnSelectExited(args);
         selected = false;
+        sparkles.Stop();
+    }
+
+    protected override void OnHoverEntered(HoverEnterEventArgs args)
+    {
+        base.OnHoverEntered(args);
+        sparkles.Play();
+    }
+
+    protected override void OnHoverExited(HoverExitEventArgs args)
+    {
+        base.OnHoverExited(args);
         sparkles.Stop();
     }
 
