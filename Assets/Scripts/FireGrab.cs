@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class FireGrab : XRGrabInteractable
 {
     public float fireForce = 8f;
+    public ParticleSystem sparkles;
     bool selected = false;
     IXRSelectInteractor interactor;
     public InputActionReference fireAction;
@@ -14,6 +15,7 @@ public class FireGrab : XRGrabInteractable
     void Start()
     {
         fireAction.action.Enable();
+        sparkles.Stop();
     }
 
     protected override void OnSelectEntered(SelectEnterEventArgs args)
@@ -21,12 +23,14 @@ public class FireGrab : XRGrabInteractable
         base.OnSelectEntered(args);
         selected = true;
         interactor = args.interactorObject;
+        sparkles.Play();
     }
 
     protected override void OnSelectExited(SelectExitEventArgs args)
     {
         base.OnSelectExited(args);
         selected = false;
+        sparkles.Stop();
     }
 
     private void FireObject()
